@@ -2,13 +2,16 @@ import pandas as pd
 import numpy as np
 
 
-def load_data(filename):
+def load_data(filename, has_header=True):
     '''
     Function to open the file into a dataframe
-    Parameter: file
-    Return: dataframe, index column
+    Parameter: filename (str)
+    Return: dataframe (pd.DataFrame)
     '''
-    base_df = pd.read_csv(filename, index_col=0)
+    if has_header:
+        base_df = pd.read_csv(filename)
+    else:
+        base_df = pd.read_csv(filename, header=None)  # Assuming there is no header
     return base_df
 
 def filter_location_df(base_df, location):
@@ -52,3 +55,11 @@ def action_percentage(df):
         action_percentage = round(action_makes / action_shots, 3)
         print(action_percentage)
         return action_percentage
+    
+def delete_none_finishes(df, column_name, target_string):
+    df = df[df[column_name] != target_string]
+    return df
+
+def finishingHand_count(df, column_name, target_string):
+    target_string_count = len(df[df[column_name] == target_string])
+    return target_string_count
