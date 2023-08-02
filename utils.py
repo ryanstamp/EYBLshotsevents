@@ -47,6 +47,7 @@ def filter_action_df(base_df, action):
 
 def action_percentage(df):
     action_shots = df['isShotAttempted'].count()
+    print("Shots:", action_shots)
     if action_shots == 0:
         return 0
     else:
