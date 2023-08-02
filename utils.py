@@ -64,3 +64,25 @@ def delete_none_finishes(df, column_name, target_string):
 def finishingHand_count(df, column_name, target_string):
     target_string_count = len(df[df[column_name] == target_string])
     return target_string_count
+
+
+def filter_hand_df(base_df, hand):
+    hand_df = pd.DataFrame()
+    
+    for _, row in base_df.iterrows():
+        if row['finishingHand'] == hand:
+            hand_df = hand_df.append(row)
+
+    return hand_df
+
+
+def finishingHand_percentage(df):
+    hand_shots = df['isShotAttempted'].count()
+    if hand_shots == 0:
+        return 0
+    else:
+        hand_makes_df = df[df['typeEvent'] == "Made Shot"]
+        hand_makes = hand_makes_df['isShotMade'].count()
+        hand_percentage = round(hand_makes / hand_shots, 3)
+        print(hand_percentage)
+        return hand_percentage
