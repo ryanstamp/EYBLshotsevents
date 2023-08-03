@@ -84,5 +84,23 @@ def finishingHand_percentage(df):
         hand_makes_df = df[df['typeEvent'] == "Made Shot"]
         hand_makes = hand_makes_df['isShotMade'].count()
         hand_percentage = round(hand_makes / hand_shots, 3)
+        print(hand_makes)
+        print(hand_shots)
         print(hand_percentage)
         return hand_percentage
+    
+def creating_driving_finishing_df(base_df, hand):
+    finsihing_left_df = pd.DataFrame()
+    finsihing_right_df = pd.DataFrame()
+
+    
+    for _, row in base_df.iterrows():
+        if row['finishingHand'] == 'left':
+            finsihing_left_df = finsihing_left_df.append(row)
+        elif row['finishingHand'] == 'right':
+            finsihing_right_df = finsihing_right_df.append(row)
+        
+    if hand == 'left':
+        return finsihing_left_df
+    elif hand == 'right':
+        return finsihing_right_df
