@@ -84,8 +84,8 @@ def finishingHand_percentage(df):
         hand_makes_df = df[df['typeEvent'] == "Made Shot"]
         hand_makes = hand_makes_df['isShotMade'].count()
         hand_percentage = round(hand_makes / hand_shots, 3)
-        print(hand_makes)
-        print(hand_shots)
+        #print(hand_makes)
+        #print(hand_shots)
         print(hand_percentage)
         return hand_percentage
     
