@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 
 def load_data(filename, has_header=True):
@@ -104,3 +105,20 @@ def creating_driving_finishing_df(base_df, hand):
         return finsihing_left_df
     elif hand == 'right':
         return finsihing_right_df
+    
+
+def pie_chart(labels, values, title, file_name):
+    '''
+    Function to graph a pie chart
+    Parameter: labels, values
+    Return: none
+    '''
+    plt.figure()
+    plt.pie(values, labels=labels, autopct="%1.1f%%")
+    plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    
+    plt.title(title)  # Set the title of the plot
+    plt.gca().set_facecolor('white')
+    
+    plt.savefig(file_name+'.png', dpi=300, bbox_inches='tight')
+    plt.show()  # Display the plot
